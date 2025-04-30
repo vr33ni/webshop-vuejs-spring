@@ -26,7 +26,11 @@
                 </ul>
             </div>
             <div class="navbar-right">
-                <font-awesome-icon icon="fa-solid fa-cart-shopping" />
+                <router-link to="/cart" class="cart-icon">
+  <font-awesome-icon icon="fa-solid fa-cart-shopping" />
+  <span v-if="cartItemCount > 0" class="cart-count">{{ cartItemCount }}</span>
+</router-link>
+
             </div>
         </div>
     </nav>
@@ -34,6 +38,12 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
+ import { useCartStore } from '../store/cart';
+
+import { computed } from 'vue';
+
+const cartStore = useCartStore();
+const cartItemCount = computed(() => cartStore.itemCount);
 
 const menuOpen = ref(false);
 // const subMenuOpen = ref(false);

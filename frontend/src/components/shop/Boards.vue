@@ -20,7 +20,9 @@
       <ul class="surfboard-list">
         <li v-for="item in filteredItems" :key="item.id">
           {{ item.name }} - {{ item.brand }} - {{ item.type }}
+          <button @click="addToCart(item)">Add to Cart</button>
         </li>
+        
       </ul>
     </div>
   </div>
@@ -29,6 +31,19 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from "vue";
 import { useBoardStore } from '../../store/boards';
+import { useCartStore } from '../../store/cart';
+const cartStore = useCartStore();
+
+const addToCart = (item: { id: any; name: any; brand: any; type: any; }) => {
+  cartStore.addToCart({
+  id: item.id,
+  name: item.name,
+  brand: item.brand,
+  category: 'board',
+  variant: item.type
+});
+
+};
 
 // Define the state
  const searchQuery = ref("");

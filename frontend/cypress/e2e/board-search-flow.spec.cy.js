@@ -17,21 +17,18 @@ describe("SurfShop App", () => {
 
   it("should perform a search by name", () => {
     cy.get('input[placeholder="Search by name"]').type("Hoodoo Swallow");
-    cy.get("button").contains("Search").click();
-
+ 
     cy.get("ul").should("contain", "Hoodoo Swallow");
   });
 
   it("should perform a search by brand", () => {
     cy.get('input[placeholder="Search by brand"]').type("Delight Alliance");
-    cy.get("button").contains("Search").click();
-
+ 
     cy.get("ul").should("contain", "Delight Alliance");
   });
 
   it("should perform a search by type", () => {
     cy.get('input[placeholder="Search by type"]').type("Fish");
-    cy.get("button").contains("Search").click();
 
     cy.get("ul").should("contain", "Fish");
   });
