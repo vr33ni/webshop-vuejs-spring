@@ -10,7 +10,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    image: backend:latest 
+    image: backend:latest
     ports:
       - "8080:8080"
     depends_on:
@@ -18,15 +18,15 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=prod
 
-  # frontend:
-  #   image: frontend:latest
-  #   build:
-  #     context: ./frontend
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "5173:80"
-  #   depends_on:
-  #     - backend
+  frontend:
+    image: frontend:latest
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
 
 volumes:
   mongodb_data:
